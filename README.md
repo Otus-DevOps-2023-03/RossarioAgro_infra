@@ -1,3 +1,47 @@
+### ДЗ по модулю Основные сервисы Yandex Cloud
+
+
+```
+testapp_IP = 84.252.128.120
+testapp_port = 9292
+```
+
+Установил и настроил yc CLI для работы с аккаунтом,
+создадал хост с помощью CLI,
+установил на нем ruby для работы приложения,
+установил и запустил MongoDB,
+задеплоил тестовое приложение, запустил и проверил его работу.
+Все необходимые команды завернул в скрипты.
+Создал скрипт для создания инстанса с уже запущенным приложением.
+
+Два варианта запуска инстанса:
+
+Первый:
+
+    ```
+    yc compute instance create \
+        --name reddit-app \
+        --hostname reddit-app \
+        --memory=4 \
+        --create-boot-disk image-folder-id=standard-images,image-family=ubuntu-1604-lts,size=10GB \
+        --network-interface subnet-name=default-ru-central1-a,nat-ip-version=ipv4 \
+        --metadata serial-port-enable=1 \
+        --ssh-key ~/.ssh/appuser.pub
+    ```
+    Далее Скопировать на созданную ВМ файлы:
+
+    - ```install_ruby.sh```
+    - ```install_mongodb.sh```
+    - ```deploy.sh```
+    - ```startup.sh```
+
+    Запустить скрипт ```startup.sh```
+
+Второй:
+
+Запустить скрипт ```yc_instance_init.sh```
+
+---
 ### ДЗ по модулю Знакомство с облачной инфраструктурой. Yandex.Cloud
 bastion_IP = 158.160.106.34
 
