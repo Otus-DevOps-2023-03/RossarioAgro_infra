@@ -2,7 +2,7 @@
     "builders": [
         {
             "type": "yandex",
-            "service_account_key_file": "files/key.json",
+            "service_account_key_file": "/home/lenar/otus_learn/RossarioAgro_infra/packer/files/key.json",
             "folder_id": "b1g7s3qbrlmak034stf7",
             "source_image_family": "ubuntu-1604-lts",
             "image_name": "reddit-base-{{timestamp}}",
@@ -10,6 +10,7 @@
             "ssh_username": "ubuntu",
             "platform_id": "standard-v1",
             "use_ipv4_nat": true,
+            "subnet_id": "e9bnrm4rf6206dr3aree",
             "zone": "ru-central1-a"
         }
     ],
@@ -18,12 +19,12 @@
             "type": "shell",
             "pause_before": "30s",
             "timeout": "1m",
-            "script": "scripts/install_ruby.sh",
+            "script": "/home/lenar/otus_learn/RossarioAgro_infra/packer/scripts/install_ruby.sh",
             "execute_command": "sudo {{.Path}}"
         },
         {
             "type": "shell",
-            "script": "scripts/install_mongodb.sh",
+            "script": "/home/lenar/otus_learn/RossarioAgro_infra/packer/scripts/install_mongodb.sh",
             "execute_command": "sudo {{.Path}}"
         }
     ]
