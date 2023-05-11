@@ -4,7 +4,7 @@
             "type": "yandex",
             "service_account_key_file": "{{ user `key`}}",
             "folder_id": "{{ user `folder_id`}}",
-            "source_image_family": "ubuntu-1604-lts",
+            "source_image_family": "{{ user `src_image` }}",
             "image_name": "reddit-full-{{timestamp}}",
             "image_family": "reddit-full",
             "ssh_username": "ubuntu",
@@ -18,24 +18,26 @@
         {
             "type":"shell",
             "inline":[
-                "sleep 300",
-                "sudo apt update && sudo apt -y -q upgrade"
+                       "sudo apt-get update",
+                       "sleep 50",
+                       "sudo apt-get install dialog apt-utils -y"
+
             ]
         },
         {
-            "timeout": "1m",
+            "pause_before": "60s",
             "type": "shell",
-            "script": "./packer/scripts/install_ruby.sh",
+            "script": "/home/lenar/otus_learn/RossarioAgro_infra/packer/scripts/install_ruby.sh",
             "execute_command": "sudo {{.Path}}"
         },
         {
             "type": "shell",
-            "script": "./packer/scripts/install_mongodb.sh",
+            "script": "/home/lenar/otus_learn/RossarioAgro_infra/packer/scripts/install_mongodb.sh",
             "execute_command": "sudo {{.Path}}"
         },
         {
             "type": "shell",
-            "script": "./packer/scripts/deploy.sh",
+            "script": "/home/lenar/otus_learn/RossarioAgro_infra/packer/scripts/deploy.sh",
             "execute_command": "sudo {{.Path}}"
         }
     ]
