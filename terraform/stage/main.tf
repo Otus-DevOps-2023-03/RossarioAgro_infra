@@ -17,6 +17,7 @@ provider "yandex" {
 module "app" {
   source          = "../modules/app"
   public_key_path = var.public_key_path
+  private_key     = var.private_key
   app_disk_image  = var.app_disk_image
   db_url          = module.db.external_ip_address_db
   subnet_id       = module.vpc.app_subnet_id
