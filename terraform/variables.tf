@@ -31,7 +31,7 @@ variable "inst_count" {
   type        = number
   default     = 1
 }
-variable "reddit_app_image_id " {
+variable "reddit_app_image_id" {
   description = "Disk image for reddit app"
   default     = "reddit-app-base"
 }
