@@ -8,7 +8,7 @@ variable "app_disk_image" {
 variable "subnet_id" {
   description = "Subnets for modules"
 }
-variable "private_key_path" {
+variable "private_key" {
   description = "Path to the public key used for ssh access"
 }
 variable "ssh_user" {

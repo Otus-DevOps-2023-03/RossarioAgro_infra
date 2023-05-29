@@ -13,6 +13,6 @@ variable "ssh_user" {
   default     = "ubuntu"
 }
 
-variable "private_key_path" {
+variable "private_key" {
   description = "Path to the public key used for ssh access"
 }

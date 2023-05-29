@@ -41,7 +41,7 @@ resource "yandex_compute_instance" "db" {
     host        = self.network_interface.0.nat_ip_address
     user        = var.ssh_user
     agent       = false
-    private_key = file(var.private_key_path)
+    private_key = file(var.private_key)
   }
 
   provisioner "remote-exec" {
