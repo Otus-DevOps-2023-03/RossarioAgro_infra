@@ -31,26 +31,15 @@ variable "inst_count" {
   type        = number
   default     = 1
 }
-variable "reddit_app_image_id" {
+variable "app_disk_image" {
   description = "Disk image for reddit app"
   default     = "reddit-app-base"
 }
-variable "reddit_db_image_id"  {
+variable "db_disk_image" {
   description = "Disk image for reddit db"
   default     = "reddit-db-base"
 }
 variable "ssh_user" {
   description = "User name for SSH connection"
   default     = "ubuntu"
-}
-variable "bucket_name" {
-  description = "s3 bucket name"
-}
-
-variable "access_key" {
-  description = "access key for s3 bucket"
-}
-
-variable "secret_key" {
-  description = "secret key for s3 bucket"
 }
