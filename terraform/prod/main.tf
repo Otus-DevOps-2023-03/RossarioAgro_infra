@@ -27,5 +27,6 @@ module "db" {
   source          = "../modules/db"
   public_key_path = var.public_key_path
   db_disk_image   = var.db_disk_image
+  private_key     = var.private_key
   subnet_id       = module.vpc.app_subnet_id
 }
