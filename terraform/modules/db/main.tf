@@ -23,7 +23,6 @@ resource "yandex_compute_instance" "db" {
   boot_disk {
     initialize_params {
       image_id        = var.db_disk_image
-      private_key     = var.private_key
     }
   }
 
