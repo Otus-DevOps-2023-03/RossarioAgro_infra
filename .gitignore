@@ -7,3 +7,5 @@ key.json
 *.tfvars
 .terraform/
 .terraformrc
+providers.tf
+.vscode

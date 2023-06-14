@@ -10,7 +10,7 @@ variable "subnet_id" {
 }
 variable "ssh_user" {
   description = "User name for SSH connection"
-  default     = "ubuntu"
+  #default     = "ubuntu"
 }
 
 variable "private_key" {

@@ -1,12 +1,3 @@
-# terraform {
-#   required_providers {
-#     yandex = {
-#       source  = "yandex-cloud/yandex"
-#       version = "0.90.0"
-#     }
-#   }
-#   #required_version = ">= 0.13"
-# }
 
 provider "yandex" {
   service_account_key_file = var.service_account_key_file
@@ -25,6 +16,7 @@ module "app" {
   app_disk_image  = var.app_disk_image
   db_url          = module.db.external_ip_address_db
   subnet_id       = module.vpc.app_subnet_id
+  ssh_user        = var.ssh_user
 }
 
 module "db" {
@@ -33,4 +25,5 @@ module "db" {
   private_key     = var.private_key
   db_disk_image   = var.db_disk_image
   subnet_id       = module.vpc.app_subnet_id
+  ssh_user        = var.ssh_user
 }
