@@ -7,5 +7,6 @@
     "disk_name": "reddit-test",
     "image_family": "reddit-test",
     "subnet_id": "xgf5h45gh",
-    "zone": "ru-central1-a"
+    "zone": "ru-central1-a",
+    "ssh_username": "ubuntu"
 }
