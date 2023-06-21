@@ -31,11 +31,6 @@
         dest: /etc/systemd/system/puma.service
       notify: reload systemd
 
-    - name: reload systemd
-      ansible.builtin.systemd:
-        daemon_reload: true
-      notify: reload puma
-
     - name: Add config for DB connection
       template:
         src: templates/db_config.j2

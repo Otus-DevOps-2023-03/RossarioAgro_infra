@@ -1,5 +1,5 @@
 {
-    "key": "key.json",
+    "svc_key": "packer/file/svckey.json",
     "folder_id": "hj454",
     "image": "ubuntu-1604-lts",
     "disk_size": "10",

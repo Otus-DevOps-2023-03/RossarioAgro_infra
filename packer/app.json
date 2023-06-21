@@ -2,7 +2,7 @@
     "builders": [
         {
             "type": "yandex",
-            "service_account_key_file": "svckey.json",
+            "service_account_key_file": "{{ user `svc_key`}}",
             "folder_id": "{{user `folder_id`}}",
             "source_image_family": "{{user `source_image_id`}}",
             "image_name": "reddit-app-base-{{timestamp}}",
