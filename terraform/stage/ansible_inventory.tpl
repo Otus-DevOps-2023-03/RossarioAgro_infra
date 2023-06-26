@@ -1,16 +1,20 @@
 {
     "app": {
         "hosts": {
+%{ for ip in app_servers ~}
             "appserver": {
-                "ansible_host": "84.201.130.125"
+                "ansible_host": "${ip}"
             }
+%{ endfor ~}
         }
     },
     "db": {
         "hosts": {
+%{ for ip in db_servers ~}
             "dbserver": {
-                "ansible_host": "62.84.114.58"
+                "ansible_host": "${ip}"
             }
+%{ endfor ~}
         }
     }
 }

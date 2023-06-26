@@ -2,25 +2,24 @@
     "builders": [
         {
             "type": "yandex",
-            "service_account_key_file": "files/key.json",
+            "service_account_key_file": "{{ user `svc_key`}}",
             "folder_id": "b1g7s3qbrlmak034stf7",
-            "source_image_family": "ubuntu-1604-lts",
+            "source_image_family": "{{user `source_image_id`}}",
             "image_name": "reddit-db-base-{{timestamp}}",
-            "image_family": "reddit-base",
+            "image_family": "reddit-db",
             "ssh_username": "ubuntu",
             "platform_id": "standard-v1",
             "use_ipv4_nat": true,
-            "zone": "ru-central1-a",
+            "zone": "{{user `zone`}}",
             "subnet_id": "{{ user `subnet_id`}}"
         }
     ],
     "provisioners": [
 
         {
-            "type": "shell",
-            "pause_before": "30s",
-            "script": "scripts/install_mongodb.sh",
-            "execute_command": "sudo {{.Path}}"
+            "type": "ansible",
+            "playbook_file": "ansible/packer_db.yml",
+            "user": "{{user `ssh_username`}}"
         }
     ]
 }

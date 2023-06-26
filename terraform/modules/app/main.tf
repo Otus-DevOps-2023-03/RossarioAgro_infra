@@ -25,21 +25,21 @@ resource "yandex_compute_instance" "app" {
     ssh-keys = "${var.ssh_user}:${file(var.public_key_path)}"
   }
 
-  connection {
-    type        = "ssh"
-    host        = self.network_interface.0.nat_ip_address
-    user        = var.ssh_user
-    agent       = false
-    private_key = file(var.private_key)
-  }
+  # connection {
+  #   type        = "ssh"
+  #   host        = self.network_interface.0.nat_ip_address
+  #   user        = var.ssh_user
+  #   agent       = false
+  #   private_key = file(var.private_key)
+  # }
 
-  provisioner "file" {
-    content     = templatefile("${path.module}/puma.service", { user = var.ssh_user, db_url = var.db_url })
-    destination = "/tmp/puma.service"
-  }
+  # provisioner "file" {
+  #   content     = templatefile("${path.module}/puma.service", { user = var.ssh_user, db_url = var.db_url })
+  #   destination = "/tmp/puma.service"
+  # }
 
-  provisioner "remote-exec" {
-    script = "${path.module}/deploy.sh"
-  }
+  # provisioner "remote-exec" {
+  #   script = "${path.module}/deploy.sh"
+  # }
 
 }

@@ -1,11 +1,13 @@
 {
-    "key": "key.json",
+    "svc_key": "packer/files/svckey.json",
     "folder_id": "hj454",
     "image": "ubuntu-1604-lts",
     "disk_size": "10",
     "memory_gb": "2",
     "disk_name": "reddit-test",
+    "source_image_id": "fd8elec1fdhdgf9l67cp5",
     "image_family": "reddit-test",
     "subnet_id": "xgf5h45gh",
-    "zone": "ru-central1-a"
+    "zone": "ru-central1-a",
+    "ssh_username": "ubuntu"
 }

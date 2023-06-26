@@ -27,3 +27,13 @@ module "db" {
   subnet_id       = module.vpc.app_subnet_id
   ssh_user        = var.ssh_user
 }
+
+resource "local_file" "hosts_cfg" {
+  content = templatefile("${path.module}/ansible_inventory.tpl",
+    {
+      app_servers = module.app.*.external_ip_address_app
+      db_servers  = module.db.*.external_ip_address_db
+    }
+  )
+  filename = "../../ansible/inventory_dynamic.json"
+}
