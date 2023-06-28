@@ -35,5 +35,5 @@ resource "local_file" "hosts_cfg" {
       db_servers  = module.db.*.external_ip_address_db
     }
   )
-  filename = "../../ansible/inventory_dynamic.json"
+  filename = "../../ansible/environments/stage/inventory_dynamic.json"
 }

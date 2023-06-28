@@ -10,3 +10,5 @@ key.json
 providers.tf
 .vscode
 *.retry
+jdauphant.nginx
+vault.key
