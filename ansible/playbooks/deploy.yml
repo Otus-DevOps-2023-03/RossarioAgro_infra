@@ -16,7 +16,7 @@
         version: monolith
       notify: Reload puma
 
-    - name: bundle installer
+    - name: Bundle installer
       bundler:
         state: present
         chdir: "/home/{{ deploy_user }}/reddit"

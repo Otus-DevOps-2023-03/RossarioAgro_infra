@@ -1,11 +1,6 @@
 ---
 # handlers file for app
 
-- name: Reload systemd
-  ansible.builtin.systemd:
-    daemon_reload: yes
-  notify: Reload puma
-
 - name: Reload puma
   systemd:
     name: puma
