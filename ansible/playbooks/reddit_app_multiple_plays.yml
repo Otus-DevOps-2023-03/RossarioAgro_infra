@@ -34,9 +34,9 @@
     - name: Add config for DB connection
       template:
         src: templates/db_config.j2
-        dest: /home/ubuntu/db_config
-        owner: ubuntu
-        group: ubuntu
+        dest: /home/vagrant/db_config
+        owner: vagrant
+        group: vagrant
 
     - name: enable puma
       systemd: name=puma enabled=yes
@@ -53,14 +53,14 @@
     - name: Fetch the latest version of application code
       git:
         repo: 'https://github.com/express42/reddit.git'
-        dest: /home/ubuntu/reddit
+        dest: /home/vagrant/reddit
         version: monolith
       notify: restart puma
 
     - name: bundle install
       bundler:
         state: present
-        chdir: /home/ubuntu/reddit
+        chdir: /home/vagrant/reddit
 
   handlers:
   - name: restart puma
