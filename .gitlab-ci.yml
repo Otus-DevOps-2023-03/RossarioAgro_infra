@@ -3,6 +3,10 @@ stages:
   - test
   - deploy
 
+default:
+  tags:
+    - docker
+
 variables:
   DATABASE_URL: 'mongodb://mongo/user_posts'
 
