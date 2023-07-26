@@ -12,7 +12,7 @@ variables:
 
 before_script:
 - apk update
-- apk add ruby
+- apk add ruby=2.6
 - cd reddit
 - gem install bundler -v 1.16.1
 - bundle install
