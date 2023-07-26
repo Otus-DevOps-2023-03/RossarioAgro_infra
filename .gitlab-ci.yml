@@ -11,8 +11,8 @@ variables:
   DATABASE_URL: 'mongodb://mongo/user_posts'
 
 before_script:
-- sudo gem install bundler
 - cd reddit
+- gem install bundler
 - bundle install
 
 build_job:
