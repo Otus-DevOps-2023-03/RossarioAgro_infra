@@ -1,3 +1,5 @@
+image: ruby:2.4.2
+
 stages:
   - build
   - test
@@ -11,11 +13,8 @@ variables:
   DATABASE_URL: 'mongodb://mongo/user_posts'
 
 before_script:
-- apk update
-- apk add ruby=2.2.4
-- cd reddit
-- gem install bundler -v 1.16.1
-- bundle install
+ - cd reddit
+ - bundle install
 
 build_job:
   stage: build
@@ -24,8 +23,10 @@ build_job:
 
 test_unit_job:
   stage: test
+  services:
+    - mongo:latest
   script:
-    - echo 'Testing 1'
+    - ruby simpletest.rb
 
 test_integration_job:
   stage: test
