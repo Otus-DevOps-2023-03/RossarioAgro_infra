@@ -25,8 +25,8 @@ build_job:
   stage: build
   script:
     - echo 'Building'
-    - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
-    - docker run --name reddit -d --network=host "$CI_REGISTRY_IMAGE:$CI_ENVIRONMENT_SLUG"
+    #- docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
+    - docker run --name reddit-docker -d --network=host "$CI_REGISTRY_IMAGE:$CI_ENVIRONMENT_SLUG"
 
 test_unit_job:
   stage: test
