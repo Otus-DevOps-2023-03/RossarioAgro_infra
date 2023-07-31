@@ -1,5 +1,60 @@
 # OTUS HW
 
+
+## ДЗ по модулю "Устройство Gitlab CI. Построение процесса непрерывной интеграции"
+
+* Описал создание облачной инфраструктуры с помощью ***Terraform***
+* Описал установку ***Docker*** на инстанс с помощью ***Ansible***
+* Описал установку ***GitLab*** на инстанс с помощью ```docker compose```
+* Добавил в проект ```reddit```
+* Добавил в проект тесты
+* Добавил окружения ```dev```, ```stage```, ```production``` в пайплайн
+* Добавил создание динамических окружений для каждой ветки в репозитории, кроме ветки master
+* Добавил автоматизацию развёртывания GitLab Runner (регистрируются два раннера - один для ```docker```, другой для ```ruby```)
+* Добавил в этап пайплайна ```build``` запуск контейнера с приложением ```reddit```
+* Добавил возможность развёртывания приложения DinD (docker in docker)
+
+> [!WARNING]\
+> для запуска ```ruby``` использовать ```.gitlab-ci.yml``` \
+> для запуска ```docker``` использовать ```.gitlab-ci-d.yml``` при этом извенив путь до файла в панели       > управления проекта, Gitlab "Settings -> CI/CD -> General pipelines CI/CD configuration file"
+
+Для сборки:
+
+* перейти в каталог **gitlab-ci**, выполнить команды:
+
+    ``` bash
+    terraform init
+    terraform apply
+    ansible-playbook install_docker_buba.yml
+    ansible-playbook install_gitlab_gitlab_runner.yml
+    ```
+
+* чтобы получить пароль для входа, нужно подключиться к инстансу по ```ssh``` и выполнить:
+
+    ``` bash
+    docker exec -it gitlab_web_1 bash
+    cat /etc/gitlab/initial_root_password | grep Password:
+    ```
+* либо можно установить новый пароль:
+
+    ``` bash
+    docker exec -it gitlab_web_1 bash
+    gitlab-rake "gitlab:password:reset[root]"
+    ```
+
+* открыть в браузере <http://IP_адрес_созданной_VM>, перейти в проект, далее в Settings->CI/CD->Runners, скопировать токен и вставить его в значение переменной ``` ${REGISTRATION_TOKEN}``` для файла ```register_runner.yml```
+* и выполнить:
+
+    ``` bash
+    docker compose up -d -f register_runner.yml
+    ```
+
+Для проверки:
+
+* открыть в браузере <http://IP_адрес_созданной_VM>
+
+> В примере указан вариант с раннером DinD
+
 ## ДЗ по модулю "Локальная разработка Ansible ролей с Vagrant. Тестирование конфигурации"
 
 * Описал создание локальной инфраструктуры с помощью ***Vagrant***
