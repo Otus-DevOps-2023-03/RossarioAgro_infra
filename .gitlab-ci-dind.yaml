@@ -1,4 +1,4 @@
-image: ruby:2.4.2
+image: docker:20.10.16
 
 stages:
   - build
@@ -9,7 +9,7 @@ stages:
 
 default:
   tags:
-    - docker
+    - docker-dind
 
 variables:
   DATABASE_URL: 'mongodb://mongo/user_posts'
@@ -17,11 +17,14 @@ variables:
 before_script:
  - cd reddit
  - bundle install
+ - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
 
 build_job:
   stage: build
   script:
     - echo 'Building'
+    - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
+    - docker run --name reddit -d --network=host "$CI_REGISTRY_IMAGE:$CI_ENVIRONMENT_SLUG"
 
 test_unit_job:
   stage: test
